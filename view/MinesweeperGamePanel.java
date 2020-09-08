@@ -1,5 +1,6 @@
 package view;
 
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -15,13 +16,18 @@ import model.MinesweeperGame;
 
 public class MinesweeperGamePanel {
 
+    public enum GameState {
+        READY, PLAYING, GAMEOVER
+    }
+
     private MinesweeperCanvas canvas;
     private JButton[] minesButton = new JButton[20];
     private JButton restartButton = new JButton("New Game");
+    private GameState gameState = GameState.READY;
 
     private JFrame window;
 
-    private MinesweeperGame msgame;
+    private MinesweeperGame msgame; //GAME OBJECT
 
 
     public MinesweeperGamePanel(JFrame window){
@@ -40,10 +46,15 @@ public class MinesweeperGamePanel {
 
         MinesweeperKeyListener keyListener = new MinesweeperKeyListener(this);
 
+        
+
         for(int i = 0; i < 20; i++){
-            minesButton[i] = new JButton("" + i); // CHANGE THIS
+            minesButton[i] = new JButton(); // CHANGE THIS
             buttonPanel.add(minesButton[i]);
+            minesButton[i].addActionListener(keyListener);  
         }
+
+        restartButton.addActionListener(keyListener);
 
         cp.add(BorderLayout.CENTER, buttonPanel);
 
@@ -64,6 +75,7 @@ public class MinesweeperGamePanel {
     public JFrame getWindow(){
         return window;
     }
+    
 
     public MinesweeperCanvas getCanvas(){
         return canvas;
@@ -73,7 +85,21 @@ public class MinesweeperGamePanel {
         return minesButton;
     }
 
-    public JButton getRestarButton(){
+    public JButton getRestartButton(){
        return restartButton;
     }
+
+    public GameState getGameState(){
+        return gameState;
+    }
+
+    public void setGameState(GameState state) {
+        this.gameState = state;
+    }
+
+    
+
+   
+
+
 }
