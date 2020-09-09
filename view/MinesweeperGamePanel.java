@@ -17,13 +17,13 @@ import model.MinesweeperGame;
 public class MinesweeperGamePanel {
 
     public enum GameState {
-        READY, PLAYING, GAMEOVER
+        WIN, PLAYING, GAMEOVER
     }
 
     private MinesweeperCanvas canvas;
-    private JButton[] minesButton = new JButton[20];
+    private JButton[] minesButton = new JButton[50];
     private JButton restartButton = new JButton("New Game");
-    private GameState gameState = GameState.READY;
+    private GameState gameState = GameState.PLAYING;
 
     private JFrame window;
 
@@ -41,15 +41,13 @@ public class MinesweeperGamePanel {
         cp.add(BorderLayout.NORTH, canvas);
         
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setPreferredSize(new Dimension(400, 200));
+        buttonPanel.setPreferredSize(new Dimension(800, 200));
         buttonPanel.setLayout(new GridLayout(5,4));
 
         MinesweeperKeyListener keyListener = new MinesweeperKeyListener(this);
 
-        
-
-        for(int i = 0; i < 20; i++){
-            minesButton[i] = new JButton(); // CHANGE THIS
+        for(int i = 0; i < minesButton.length; i++){
+            minesButton[i] = new JButton(); 
             buttonPanel.add(minesButton[i]);
             minesButton[i].addActionListener(keyListener);  
         }
@@ -63,9 +61,6 @@ public class MinesweeperGamePanel {
         southPanel.setPreferredSize(new Dimension(400,35));
         southPanel.setBackground(Color.pink);
         cp.add(BorderLayout.SOUTH, southPanel);
-
-        // northPanel.setLayout(new GridLayout(2,2));
-        // northPanel.add()
     }
 
     public MinesweeperGame getMinesweeperGame(){
@@ -76,7 +71,6 @@ public class MinesweeperGamePanel {
         return window;
     }
     
-
     public MinesweeperCanvas getCanvas(){
         return canvas;
     }

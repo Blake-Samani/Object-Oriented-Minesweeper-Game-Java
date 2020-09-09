@@ -23,9 +23,6 @@ public class MinesweeperGameTest {
     for(var e: d){
         System.out.println(e);
     }
-
-
     
-     
     }
 }

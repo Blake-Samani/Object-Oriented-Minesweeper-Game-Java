@@ -7,7 +7,7 @@ import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.MinesweeperGame;
+
 
 import javax.swing.JButton;
 
@@ -22,12 +22,13 @@ public class MenuScreen {
     public void init() {
         Container cp = window.getContentPane();
         JPanel menuPanel = new JPanel();
-        menuPanel.setPreferredSize(new Dimension(400, 200));
+        menuPanel.setPreferredSize(new Dimension(800, 200));
         menuPanel.setLayout(new GridLayout(1, 1));
         cp.add(BorderLayout.CENTER, menuPanel);
 
         var minesweeperStartButton = new JButton("Minesweeper Game");
         menuPanel.add(minesweeperStartButton);
+       
 
         minesweeperStartButton.addActionListener(event -> {
             window.getContentPane().removeAll();
@@ -35,6 +36,7 @@ public class MenuScreen {
             panel.init();
             window.pack();
             window.setVisible(true);
+           
         });
     }
 
